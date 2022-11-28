@@ -1,0 +1,54 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Courses</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous">
+    <style>
+        h1 {text-align: center;}
+        body {
+            background-color: slategrey;
+            color: white;
+        }
+    </style>
+
+</head>
+<body>
+<div class="container">
+    <h1>Course Tracker</h1>
+    <hr>
+    <h2>Save Course</h2>
+
+    <div class="card-body">
+        <form th:action="@{/save}" th:object="${course}"
+          method="post">
+        <input
+                class="form-control"
+                id="courseName"
+                name="courseName"
+                placeholder="Enter course name"
+                th:field="*{courseName}"
+                type="courseName"
+        />
+        <input
+                class="form-control"
+                id="instructor"
+                name="instructor"
+                placeholder="Instructor Name"
+                th:field="*{instructor}"
+                type="instructor"
+        />
+
+
+        <button type="submit" class="btn btn-info col-2"> Save Course</button>
+    </form>
+
+    <hr>
+
+    <a th:href = "@{/}"> Back to Course List</a>
+</div>
+</body>

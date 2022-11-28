@@ -1,0 +1,82 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Please Sign Up</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: slategrey;
+            color: white;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+    <div th:if="${param.success}">
+        <div class="alert alert-info">
+            You have successfully registered our app!
+        </div>
+    </div>
+    <div th:if="${param.failure}">
+        <div class="alert alert-info">
+            Such user already exists! try different username
+        </div>
+    </div>
+    <div class="card-body">
+        <form
+                method="post"
+                role="form"
+                th:action="@{/signup}"
+                th:object="${user}"
+        >
+            <div class="form-group mb-3">
+                <label class="form-label">Username</label>
+                <input
+                        class="form-control"
+                        id="username"
+                        name="username"
+                        placeholder="Enter username"
+                        th:field="*{username}"
+                        type="username"
+                />
+                <p th:errors="*{username}" class="text-danger"
+                   th:if="${#fields.hasErrors('username')}"></p>
+            </div>
+            <div class="form-group mb-3">
+                <label class="form-label">Password</label>
+                <input
+                        class="form-control"
+                        id="password"
+                        name="password"
+                        placeholder="Enter password"
+                        th:field="*{password}"
+                        type="password"
+                />
+                <p th:errors="*{password}" class="text-danger"
+                   th:if="${#fields.hasErrors('password')}"></p>
+            </div>
+            <div class="form-group mb-3">
+                <label for="roles">Choose a Role:</label>
+                <select name="roles" id="roles" th:field="*{role}">
+                    <option value="student">STUDENT</option>
+                    <option value="admin">ADMIN</option>
+                </select>
+
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit">Register</button>
+                <span>Already registered? <a th:href="@{/login}">Login here</a></span>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
